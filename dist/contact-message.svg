@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 460" fill="none" stroke-linejoin="round">
+<defs>
+ <linearGradient id="mail-shell" x2=".8" y2="1"><stop stop-color="#fff1a0"/><stop offset="1" stop-color="#caaa2e"/></linearGradient>
+ <linearGradient id="mail-fold" x2="1" y2="1"><stop stop-color="#ffd600"/><stop offset="1" stop-color="#af8d24"/></linearGradient>
+ <linearGradient id="mail-paper" x2=".5" y2="1"><stop stop-color="#fffef6"/><stop offset="1" stop-color="#dce3c9"/></linearGradient>
+ <filter id="mail-shadow"><feGaussianBlur stdDeviation="9"/></filter>
+</defs>
+<style>
+ .mail-envelope{transform-origin:280px 260px;animation:mail-float 8s ease-in-out infinite}
+ .mail-letter{animation:mail-reveal 8s cubic-bezier(.45,0,.25,1) infinite}
+ .mail-signal{transform-origin:422px 134px;animation:mail-pulse 8s ease-in-out infinite}
+ .mail-ground{transform-origin:280px 395px;animation:mail-shadow-pulse 8s ease-in-out infinite}
+ @keyframes mail-float{0%,100%{transform:translateY(3px) rotate(-1deg)}50%{transform:translateY(-7px) rotate(1deg)}}
+ @keyframes mail-reveal{0%,100%{transform:translateY(18px)}35%,65%{transform:translateY(-14px)}}
+ @keyframes mail-pulse{0%,20%,85%,100%{transform:scale(.94);opacity:.65}40%,65%{transform:scale(1);opacity:1}}
+ @keyframes mail-shadow-pulse{50%{transform:scaleX(.93);opacity:.1}}
+ @media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+<ellipse class="mail-ground" cx="280" cy="395" rx="164" ry="13" fill="#35462b" opacity=".16" filter="url(#mail-shadow)"/>
+<g class="mail-envelope">
+ <!-- Thick open envelope, drawn in three-quarter perspective. -->
+ <path d="m112 209 135-107 174 76 19 171-242 47-86-56Z" fill="#64803d"/>
+ <path d="m112 209 143-91 166 60-231 88Z" fill="#9ab951" stroke="#b5d273" stroke-width="2"/>
+ <path d="m112 209 78 57 231-88v171l-231 47-78-56Z" fill="#759340"/>
+ <!-- A project note rises from the envelope, then settles back. -->
+ <g class="mail-letter">
+ <path d="m168 140 180-35 40 24v164l-181 37-39-24Z" fill="#b7c5a0"/>
+ <path d="m168 140 180-35v174l-180 36Z" fill="url(#mail-paper)" stroke="#fafcf1" stroke-width="2"/>
+ <path d="m189 165 109-21" stroke="#293c28" stroke-width="9" stroke-linecap="round"/>
+ <path d="m190 187 136-27m-136 42 117-23m-117 39 93-18" stroke="#a6b49a" stroke-width="5" stroke-linecap="round"/>
+ <path d="m190 249 75-15v27l-75 16Z" fill="#ffd600"/>
+ <path d="m204 259 39-8" stroke="#586f36" stroke-width="4" stroke-linecap="round"/>
+ <circle cx="319" cy="252" r="13" fill="#242424"/><path d="m313 252 4 4 8-10" stroke="#ffd600" stroke-width="2.5"/>
+ </g>
+ <!-- Overlapping folds keep the note inside the envelope. -->
+ <path d="m112 209 78 57v130l-78-56Z" fill="#8fae4c" stroke="#a8c565" stroke-width="2"/>
+ <path d="m190 266 111 46 120-134v171l-231 47Z" fill="url(#mail-shell)" stroke="#e9cc60" stroke-width="2"/>
+ <path d="m190 396 102-109 129 62Z" fill="url(#mail-fold)" stroke="#e6ca63" stroke-width="2"/>
+ <path d="m199 389 94-91 118 48" stroke="#efffb6" stroke-width="2" opacity=".65"/>
+ <path d="m132 262 36 25m-36-12 36 25" stroke="#b7d477" stroke-width="3"/>
+</g>
+<!-- A three-dimensional conversation badge. -->
+<g class="mail-signal"><path d="m396 100 53 13 14 18v47l-28-7-21 12v-18l-18-5Z" fill="#182b20"/><path d="m386 93 63 16v51l-29-7-18 13v-18l-16-4Z" fill="#354c34" stroke="#839a6d" stroke-width="2"/><circle cx="402" cy="122" r="3.5" fill="#ffd600"/><circle cx="417" cy="126" r="3.5" fill="#ffd600"/><circle cx="432" cy="130" r="3.5" fill="#ffd600"/></g>
+</svg>
