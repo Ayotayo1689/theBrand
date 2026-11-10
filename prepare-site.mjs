@@ -51,23 +51,23 @@ for (const file of readdirSync(root)) {
   writeFileSync(path, text);
 }
 const pages = [
-  ['team.html', 'Meet the Team | TheBrand', 'Meet the people behind TheBrand’s creative direction, content creation, brand strategy, and social campaigns.', 'AboutPage'],
+  [‘team.html’, ‘Meet the Team | TheBrand’, ‘Meet the people behind TheBrand’s creative direction, content creation, brand strategy, software, and social campaigns.’, ‘AboutPage’],
   [
     "index.html",
     "Content Creation & Marketing Studio | TheBrand",
-    "TheBrand brings brand strategy, photography, film, and social campaigns together to help ambitious businesses tell clearer stories and connect with their audiences.",
+    "TheBrand brings brand strategy, photography, film, software, and social campaigns together to help ambitious businesses tell clearer stories and connect with their audiences.",
     "WebPage",
   ],
   [
     "work.html",
     "Creative Concepts & Campaign Ideas | TheBrand",
-    "Explore TheBrand’s concept collection across content creation, brand strategy, and social campaigns. Discover the creative direction behind each idea.",
+    "Explore TheBrand’s concept collection across content creation, brand strategy, software, and social campaigns. Discover the creative direction behind each idea.",
     "CollectionPage",
   ],
   [
     "studio.html",
     "About Our Creative & Marketing Studio | TheBrand",
-    "Meet the thinking behind TheBrand: brand strategy, content creation, and campaigns shaped by clarity, character, and meaningful audience connections.",
+    "Meet the thinking behind TheBrand: brand strategy, content creation, software, and campaigns shaped by clarity, character, and meaningful audience connections.",
     "AboutPage",
   ],
   [
