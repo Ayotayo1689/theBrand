@@ -51,8 +51,13 @@ document.querySelectorAll('[data-team-video]').forEach(video => {
   new IntersectionObserver(entries => {
     visible = entries[0].isIntersecting;
     if (visible) {
-      if (video.preload === 'none') { video.preload = 'metadata'; video.load(); }
-      play();
+      if (video.preload === 'none') {
+        video.preload = 'auto';
+        video.load();
+        video.addEventListener('canplay', () => play(), { once: true });
+      } else {
+        play();
+      }
     } else pause();
   }, { threshold: .2 }).observe(video);
   document.addEventListener('visibilitychange', () => document.hidden ? pause() : play());

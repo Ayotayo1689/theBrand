@@ -9,7 +9,7 @@ export function renderTeam(members){
     const bg=thumb?` style="background-image:url('${escape(thumb)}');background-size:cover;background-position:center"`:"";
     const src=mediaPath(m.video);
     const poster=m.poster?mediaPath(m.poster):"";
-    const video=src?`<video data-team-video muted loop playsinline autoplay preload="metadata" width="600" height="750" aria-label="${escape(m.name)}"${poster?` poster="${poster}"`:""}><source src="${src}" type="${videoType(m.video)}">Your browser cannot play this video.</video>`:'<p class="video-unavailable">Team video coming soon.</p>';
+    const video=src?`<video muted loop playsinline preload="none" width="600" height="750" aria-label="${escape(m.name)}"${poster?` poster="${poster}"`:""}><source src="${src}" type="${videoType(m.video)}">Your browser cannot play this video.</video>`:'<p class="video-unavailable">Team video coming soon.</p>';
     const playBtn=src?`<button class="team-play-btn" aria-label="Watch ${escape(m.name)}'s video" data-src="${src}" data-poster="${poster}"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>`:"";
     return`<article class="team-card"><div class="team-photo video-panel"${bg}>${video}<span class="team-number" aria-hidden="true">${String(i+1).padStart(2,"0")}</span>${playBtn}</div><div class="team-card-heading"><h3>${escape(m.name)}</h3><span class="team-dot" aria-hidden="true"></span></div><p class="team-role">${escape(m.role)}</p>${m.bio?`<p class="team-bio">${escape(m.bio)}</p>`:""}</article>`;
   }).join("");
