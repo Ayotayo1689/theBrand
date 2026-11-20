@@ -51,7 +51,7 @@ for (const file of readdirSync(root)) {
   writeFileSync(path, text);
 }
 const pages = [
-  [‘team.html’, ‘Meet the Team | TheBrand’, ‘Meet the people behind TheBrand’s creative direction, content creation, brand strategy, software, and social campaigns.’, ‘AboutPage’],
+  ["team.html", "Meet the Team | TheBrand", "Meet the people behind TheBrand’s creative direction, content creation, brand strategy, software, and social campaigns.", "AboutPage"],
   [
     "index.html",
     "Content Creation & Marketing Studio | TheBrand",
@@ -60,8 +60,8 @@ const pages = [
   ],
   [
     "work.html",
-    "Creative Concepts & Campaign Ideas | TheBrand",
-    "Explore TheBrand’s concept collection across content creation, brand strategy, software, and social campaigns. Discover the creative direction behind each idea.",
+    "Our Work: Wedding, Fashion, Event & Studio Films | TheBrand",
+    "Watch TheBrand’s wedding films, Yoruba heritage fashion films, birthday and event coverage, and studio portrait reels, plus the software products we have built.",
     "CollectionPage",
   ],
   [
@@ -178,13 +178,18 @@ for (const [file, title, description, type] of pages) {
     const source = readFileSync(new URL("app.js", root), "utf8");
     const projects = [
       ...source.matchAll(
-        /\{title:'([^']+)',category:'([^']+)',type:'[^']+',image:'([^']+)'/g,
+        /\{"?title"?:"([^"]+)","?category"?:"([^"]+)","?type"?:"([^"]+)","?image"?:"([^"]+)"/g,
       ),
-    ].slice(0, file === "index.html" ? 2 : 4);
+    ].slice(0, file === "index.html" ? 3 : undefined);
     if (projects.length)
       html = html.replace(
-        /<div class="projects">[\s\S]*?<\/div>(?=<p class="image-credit">)/,
-        `<div class="projects">${projects.map(([, name, category, image]) => `<article class="project"><a href="contact.html"><div class="project-image"><img src="https://images.unsplash.com/${image}?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="${esc(name)} — ${esc(category)} concept" loading="lazy" width="1000" height="800"></div><div class="project-info"><div><h3>${esc(name)}</h3><p>${esc(category)}</p></div><span>Illustrative concept</span></div></a></article>`).join("")}</div>`,
+        /<div class="projects">[\s\S]*?<\/div>(?=\s*<p class="image-credit">)/,
+        `<div class="projects">${projects
+          .map(([, name, category, type, image]) => {
+            const reel = image.startsWith("media/work/");
+            return `<article class="project${reel ? " is-reel" : ""}" data-category="${esc(type)}"><a href="work.html"><div class="project-image"><img src="${esc(image)}" alt="${esc(name)}, ${esc(category.toLowerCase())} ${reel ? "film" : "project"} by TheBrand" loading="lazy" width="${reel ? 720 : 1000}" height="${reel ? 1280 : 800}"></div><div class="project-info"><div><h3>${esc(name)}</h3><p>${esc(category)}</p></div><span>${reel ? "Shot by TheBrand" : "Built by TheBrand"}</span></div></a></article>`;
+          })
+          .join("")}</div>`,
       );
   }
   if (file === "games.html") {
